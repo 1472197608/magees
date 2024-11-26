@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图片切换</title>
+    <style>
+        .image-container {
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 500px;
+            max-height: 500px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            margin: 0 10px;
+        }
+    </style>
+    <script>
+        var images = ["https://i.postimg.cc/qRn82P2P/image.png", "https://i.postimg.cc/VLLBSHHN/27062668af499a25b5c8e73398b9189.jpg"]; // 图片路径数组
+        var currentIndex = 0; // 当前显示的图片索引
+
+        function changeImage(direction) {
+            currentIndex += direction; // 根据方向更新索引
+
+            // 处理索引越界
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+
+            var imgElement = document.getElementById("image");
+            imgElement.src = images[currentIndex]; // 更新图片路径
+        }
+    </script>
+</head>
+<body>
+    <h1>图片切换</h1>
+    <div class="image-container">
+        <img id="image" src="image1.jpg" alt="Image">
+    </div>
+    <div class="button-container">
+        <button onclick="changeImage(-1)">上一张</button>
+        <button onclick="changeImage(1)">下一张</button>
+    </div>
+</body>
+</html>
